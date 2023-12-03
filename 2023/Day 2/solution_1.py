@@ -3,7 +3,7 @@ import os
 input = open("input.txt", "r")
 lines = input.readlines()
 
-class game:
+class gameParser:
     def __init__(self, line):
             # Ex: 12
             self.gameID = line.split(":")[0].split(" ")[1]   
@@ -16,31 +16,45 @@ class game:
 
 #What games are possible with only 12 red, 13 green, and 14 blue cubes
 #Ex. Game 9: 1 green, 5 blue; 4 blue; 2 red, 1 blue
-gameData = game(lines[25])
 total = 0
 roundFailed = False
 
-# Check for any failing rounds
+# For every game
+for game in lines:
+      # Create a game parse object
+      gameData = gameParser(game)
 
-# For every round inside the list of rounds
-for i in range(0, len(gameData.rounds)):
-    # For every item in the round
-    for j in range(0, len(gameData.rounds[i])):
-            num = gameData.rounds[i][j].strip().split(" ")[0]
-            color = gameData.rounds[i][j].strip().split(" ")[1]
-            if(color == "green" and int(num) > 13):
-                  roundFailed = True
-            elif(color == "red" and int(num) > 12):
-                  roundFailed = False
-            elif(color == "blue" and int(num) > 14):
-                  roundFailed = False      
-            else:
-                  total += int(gameData.gameID)
+      # Check all the rounds of that game
+      for i in range(0, len(gameData.rounds)):
 
-print(total)
+            # Check all the color pulls from that round
+            for j in range(0, len(gameData.rounds[i])):
+
+                  # Get the color and number of that color pulled
+                  num = gameData.rounds[i][j].strip().split(" ")[0]
+                  color = gameData.rounds[i][j].strip().split(" ")[1]
+                  print("{} - {}".format(num, color))
+
+                  # Set round pass to false if the number of pulled cubes is not allowed
+                  if(color == "green" and int(num) > 13):
+                        print("failed green")
+                        roundFailed = True
+                  elif(color == "red" and int(num) > 12):
+                        print("failed red")
+                        roundFailed = True
+                  elif(color == "blue" and int(num) > 14):
+                        print("failed blue\n\n")
+                        roundFailed = True      
+
+      if(roundFailed is False):
+            print(gameData.gameID)
+            total += int(gameData.gameID)
+      roundFailed = False
+
+print("Total: {}".format(total))
 
 # Incorrect answer (p1): 286 <
-# Incorrect answer (p1): 
+# Correct answer (p1): 2810
 
 
 
