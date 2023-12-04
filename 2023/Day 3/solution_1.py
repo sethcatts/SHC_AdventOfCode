@@ -10,19 +10,6 @@ def isSpecialChar(char):
             return True
     return False
 
-# Edge case: The number is right at the end of the line
-def getWholeNumber(i, line):
-    startIndex = i
-    endIndex = i
-    for l in reversed(range(i)):
-        if(!line[l].isDigit()):
-            startIndex = l+1
-    for l in range(i, len(line)):
-        if(!line[l].isDigit()):
-            endIndex = l-1
-    return int(line[startIndex, endIndex])
-
-
 def hasAdjacentSpecialChar(array, i, j):
     #Above
     if(isSpecialChar(array[i-1][j-1])):
@@ -48,13 +35,28 @@ def hasAdjacentSpecialChar(array, i, j):
     else:
         return False 
 
+# Edge case: The number is right at the end of the line
+def getWholeNumber(i, line):
+    startIndex = i
+    endIndex = i
+    for l in reversed(range(i)):
+        if(not line[l].isdigit()):
+            startIndex = l+1
+    for l in range(i, len(line)):
+        if(not line[l].isdigit()):
+            endIndex = l-1
+    return [int(line[startIndex:endIndex]), endIndex]
+
 total = 0
 
 # Do the stuff
-for line in lines: 
-    for i in range(0, len(line)):
-        if(hasAdjacentSpecialChar(line[i])):
+for i in range(0, len(lines)): 
+    for j in range(0, len(lines[i])):
+        if(hasAdjacentSpecialChar(lines, i, j)):
             #Add this number and move the pointer to the char after the end of this number
-            print("Added a number")
+            numData = getWholeNumber(i, lines[i])
+            total += numData[0]
+            i = numData[1]
+
 
 print("Total: {}".format(total))
