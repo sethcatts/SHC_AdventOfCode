@@ -33,6 +33,15 @@ def hasAdjacentSpecialChar(array, i, j):
     elif (isSpecialChar(array[i+1][j+1])):
         return True
     else:
-        return False
-    
+        return False 
+
+total = 0
+
 # Do the stuff
+for line in lines: 
+    for i in range(0, len(line)):
+        if(hasAdjacentSpecialChar(line[i])):
+            #Add this number and move the pointer to the char after the end of this number
+            print("Added a number")
+
+print("Total: {}".format(total))
