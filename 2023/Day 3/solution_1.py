@@ -10,6 +10,19 @@ def isSpecialChar(char):
             return True
     return False
 
+# Edge case: The number is right at the end of the line
+def getWholeNumber(i, line):
+    startIndex = i
+    endIndex = i
+    for l in reversed(range(i)):
+        if(!line[l].isDigit()):
+            startIndex = l+1
+    for l in range(i, len(line)):
+        if(!line[l].isDigit()):
+            endIndex = l-1
+    return int(line[startIndex, endIndex])
+
+
 def hasAdjacentSpecialChar(array, i, j):
     #Above
     if(isSpecialChar(array[i-1][j-1])):
