@@ -1,2 +1,4 @@
-# SHC_AdventOfCode
-My work for Advent Of Code
+# Advent Of Code 
+My work for the yearly Advent Of Code event
+
+https://adventofcode.com/2023/about
