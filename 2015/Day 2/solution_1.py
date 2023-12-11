@@ -7,16 +7,17 @@ for line in lines:
     paper = 0
     d = line.strip().split("x")
     dx = [eval(i) for i in d]
+    l = dx[0]
+    w = dx[1]
+    h = dx[2]
     dx.sort()
-    paper += dx[0]
-    paper += (2 * dx[0]) + (2 * dx[1]) + (2 * dx[2])
-    print(dx)
-    print("2 * {} + 2 * {} + 2 * {} + {}".format(dx[0], dx[1], dx[2], dx[0]))
-    total += paper
+    print("L {} W {} H {} S {}".format(l, w, h, dx[0]))
+    #print("{} {} {} {}".format((2 * l * w), (2 * w * h), (2 * h * l), dx[0]))
+    print("{}".format((2 * l * w) + (2 * w * h) + (2 * h * l) + dx[0]))
+    total += (2 * l * w) + (2 * w * h) + (2 * h * l) + dx[0]
 
 print("Total paper needed {} sqft".format(total))
 
 # Missing side area code LxWxH
-
-
 # Wrong answer: 101578 <
+# Wrong answer: 1464826 <
