@@ -11,13 +11,24 @@ for line in lines:
     w = dx[1]
     h = dx[2]
     dx.sort()
-    print("L {} W {} H {} S {}".format(l, w, h, dx[0]))
-    #print("{} {} {} {}".format((2 * l * w), (2 * w * h), (2 * h * l), dx[0]))
-    print("{}".format((2 * l * w) + (2 * w * h) + (2 * h * l) + dx[0]))
-    total += (2 * l * w) + (2 * w * h) + (2 * h * l) + dx[0]
+
+    areaList = []
+    areaList.append(2 * l * w)
+    areaList.append(2 * w * h)
+    areaList.append(2 * h * l)
+    areaList.sort()
+
+    areaLista = []
+    areaLista.append(l * w)
+    areaLista.append(w * h)
+    areaLista.append(h * l)
+    areaLista.sort()
+
+    print("{} + {} + {} + {} = ".format(areaList[0], areaList[1], areaList[2], areaLista[0]), (areaList[0] + areaList[1] + areaList[2] + areaLista[0]))
+    total += (areaList[0] + areaList[1] + areaList[2] + areaLista[0])
 
 print("Total paper needed {} sqft".format(total))
 
-# Missing side area code LxWxH
 # Wrong answer: 101578 <
 # Wrong answer: 1464826 <
+# Correct answer: 1606483 
